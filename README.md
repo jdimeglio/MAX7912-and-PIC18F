@@ -7,4 +7,4 @@ More information here:
 
 http://jdimeglio.blogspot.com/2014/
 
-
+Also in the repo is demos of the code in action.
