@@ -8,13 +8,13 @@
 #define Chip_Select PIN_D0
 #define Chip_Select_Direction tris_d(0)
 
-byte VR[8];                           //Video RAM used to draw the screen before sending to the 8x8 matrix
+byte VR[8];                            //Video RAM used to draw the screen before sending to the 8x8 matrix
 
-int x=5 ,y=0;                         // starting position of ball one
-int xdir=1, ydir=1;                 //the director ball one will go
+int x=5 ,y=0;                          // starting position of ball one
+int xdir=1, ydir=1;                    //the director ball one will go
 
-int x1=0 ,y1=3;                    //starting poistion of ball two
-int x1dir=1, y1dir=-1;          //its starting position
+int x1=0 ,y1=3;                        //starting poistion of ball two
+int x1dir=1, y1dir=-1;                 //its starting position
 
 
 //clear the "screen" - its the video ram thats getting cleared
@@ -63,7 +63,7 @@ void grx_unsetxy(byte x,y)
 VOID grx_WriteChar(byte myChar)
 {
      byte Column, Start_Byte;
-    Start_Byte = (myChar - 65) * 6; // 65 represents the letter "A" in ASCII code.
+    Start_Byte = (myChar - 65) * 6;             // 65 represents the letter "A" in ASCII code.
 
     // We are using only columns from 2 through 7 FOR displaying the character.
     FOR (Column = 7; Column > 1; Column--)
@@ -76,13 +76,13 @@ VOID grx_WriteChar(byte myChar)
 void grx_scroll(byte x,clip,dir)
 {
     byte scroll,edge;
-    edge=VR[7];                 //save last row
+    edge=VR[7];                              //save last row
 
    for (scroll=7;scroll>0;scroll--)
    {
       VR[scroll]=VR[scroll-1];
    }
-   VR[0]=edge;                 //put in the first row
+   VR[0]=edge;                               //put in the first row
 }
 
 
@@ -91,15 +91,15 @@ void grx_scroll(byte x,clip,dir)
 //anitmate the bouncing balls.
 void bouncing(void)
 {
-     grx_setxy(x,y);      //draw the ball one
-     grx_setxy(x1,y1);  //draw ball two
-     grx_display();        //display it
+     grx_setxy(x,y);                         //draw the ball one
+     grx_setxy(x1,y1);                       //draw ball two
+     grx_display();                          //display it
      Delay_ms (5) ;
-     grx_unsetxy(x,y);   //turn them off
+     grx_unsetxy(x,y);                       //turn them off
      grx_unsetxy(x1,y1);
-     x= x + xdir;           //new position
+     x= x + xdir;                            //new position
      y =y + ydir;
-     if (x>=7||x<=0)     //check if they hit the edges if so change direction.
+     if (x>=7||x<=0)                         //check if they hit the edges if so change direction.
     {
        xdir=-xdir;
     }
@@ -109,7 +109,7 @@ void bouncing(void)
      ydir=-ydir;
     }
 
-    x1= x1 + x1dir;     //same for ball two
+    x1= x1 + x1dir;                          //same for ball two
     y1 =y1 + y1dir;
     if (x1>=7||x1<=0)
    {
